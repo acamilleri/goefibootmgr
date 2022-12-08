@@ -2,12 +2,14 @@
 
 Simple wrapper for [efibootmgr](https://github.com/rhboot/efibootmgr) command.
 
+Fork from [jkirkwood/goefibootmgr](https://github.com/jkirkwood/goefibootmgr) but refactored for my needs.
+
 ## Installation
 
 Run:
 
 ```
-go get github.com/jkirkwood/goefibootmgr
+go get github.com/acamilleri/goefibootmgr
 ```
 
 ## Docs
@@ -19,17 +21,15 @@ go get github.com/jkirkwood/goefibootmgr
 ```go
 package main
 
-import "github.com/jkirkwood/goefibootmgr"
+import "github.com/acamilleri/goefibootmgr"
 
 func main() {
-  info, err := goefibootmgr.BootInfo()
-
+  manager, err := goefibootmgr.NewBootManager()
   if err != nil {
     panic(err)
   }
 
-  err = goefibootmgr.SetBootOrder(1, 3, 2)
-
+  err = manager.SetBootOrder(1, 3, 2)
   if err != nil {
     panic(err)
   }
